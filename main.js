@@ -1,10 +1,10 @@
+// main.js
 (() => {
 const year = document.getElementById("year");
 if (year) year.textContent = new Date().getFullYear();
 
 const toggle = document.querySelector(".nav__toggle");
 const nav = document.querySelector("[data-nav]");
-
 if (!toggle || !nav) return;
 
 toggle.addEventListener("click", () => {
@@ -12,7 +12,6 @@ toggle.addEventListener("click", () => {
     toggle.setAttribute("aria-expanded", String(isOpen));
 });
 
-// Cerrar menú al tocar un link
 nav.querySelectorAll("a").forEach((a) => {
     a.addEventListener("click", () => {
     nav.classList.remove("is-open");
@@ -20,24 +19,27 @@ nav.querySelectorAll("a").forEach((a) => {
     });
 });
 
-// Smooth scroll mejorado para la categoría
-const catLink = document.querySelector('.cat');
-if (catLink) {
-    catLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    const targetId = catLink.getAttribute('href');
-    const targetSection = document.querySelector(targetId);
-    
-    if (targetSection) {
-        const headerOffset = 80;
-        const elementPosition = targetSection.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-        
-        window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-        });
+// Background carousel for hero section
+const carouselBg = document.querySelector(".hero__carousel-bg");
+if (carouselBg) {
+    const slides = carouselBg.querySelectorAll(".carousel__slide");
+    let currentSlide = 0;
+    let autoplayInterval;
+
+    function showSlide(index) {
+    slides.forEach((s) => s.classList.remove("carousel__slide--active"));
+    slides[index].classList.add("carousel__slide--active");
+    currentSlide = index;
     }
-    });
+
+    function nextSlide() {
+    showSlide((currentSlide + 1) % slides.length);
+    }
+
+    function startAutoplay() {
+    autoplayInterval = setInterval(nextSlide, 5000);
+    }
+
+    startAutoplay();
 }
 })();

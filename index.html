@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!doctype html>
 <html lang="es">
 <head>
@@ -7,17 +8,16 @@
 <title>AgroBalance - Nutrición para Aves</title>
 
 <link rel="stylesheet" href="./style.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <script defer src="./main.js"></script>
 </head>
 
 <body>
-<!-- HEADER SEPARADO -->
 <header class="header" id="top">
     <div class="shell">
     <nav class="nav">
         <a class="brand" href="#top" aria-label="AgroBalance - Inicio">
         <img class="brand__logo" src="./logotipo.png" alt="AgroBalance" />
-        <span class="brand__name">AGROBALANCE</span>
         </a>
 
         <button class="nav__toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
@@ -26,7 +26,6 @@
 
         <div class="nav__links" data-nav>
         <a href="#categorias">Productos</a>
-        <a href="#supermix">SUPERMIX Aves</a>
         <a href="#nosotros">Nosotros</a>
         <a href="#contacto">Contacto</a>
         </div>
@@ -36,16 +35,22 @@
     </div>
 </header>
 
-<!-- HERO SECTION SEPARADO -->
-<section class="hero">
+<section class="hero hero--with-carousel">
+    <div class="hero__carousel-bg">
+        <div class="carousel__slide carousel__slide--active">
+            <img src="./fondo_balanceado2.png" alt="Fondo AgroBalance" />
+        </div>
+    </div>
+
     <div class="hero__backdrop" aria-hidden="true"></div>
 
-    <div class="shell">
+    <div class="shell shell--wide">
     <div class="hero__content">
         <div class="hero__text">
         <h1 class="hero__title">
-            Nutrición Avanzada<br />
-            <span>para una Producción Saludable</span>
+            <span class="title-line">Nutrición Avanzada</span>
+            <span class="title-line">para una Producción</span>
+            <span class="title-line">Saludable</span>
         </h1>
 
         <p class="hero__lead">
@@ -53,16 +58,40 @@
             con nuestras soluciones especializadas.
         </p>
 
-        <a class="btn btn--success" href="#supermix">Descubrí Nuestros Productos</a>
+        <a class="btn btn--success" href="#nosotros">Descubrí Más Sobre Nosotros</a>
         </div>
 
-        <div class="hero__cats" id="categorias">
-        <a class="cat cat--single" href="#supermix" aria-label="Aves">
-            <div class="cat__shield">
-            <img src="./gallina.png" alt="Aves" />
+        <div class="hero__products" id="categorias">
+        <h2 class="products__title">Visitá Nuestros Productos</h2>
+        <div class="products__grid">
+            <a class="product-cat" href="./aves.html" aria-label="Productos para Aves">
+            <div class="product-cat__icon">
+                <img src="./logo_gallina.png" alt="Aves" />
             </div>
-            <span>AVES</span>
-        </a>
+            <span class="product-cat__label">Aves</span>
+            </a>
+
+            <a class="product-cat" href="#" aria-label="Productos para Vacas">
+            <div class="product-cat__icon">
+                <img src="./logo_vaca.png" alt="Vacas" />
+            </div>
+            
+            </a>
+
+            <a class="product-cat" href="#" aria-label="Productos para Cerdos">
+            <div class="product-cat__icon">
+                <img src="./logo_cerdo.png" alt="Cerdos" />
+            </div>
+            
+            </a>
+
+            <a class="product-cat" href="#" aria-label="Productos para Ovejas">
+            <div class="product-cat__icon">
+                <img src="./logo_oveja.png" alt="Ovejas" />
+            </div>
+            
+            </a>
+        </div>
         </div>
     </div>
     </div>
@@ -71,7 +100,7 @@
 <main class="main">
     <section class="shell features" aria-label="Características">
     <article class="feature">
-        <img src="./istockphoto-1221688781-1024x1024.jpg" alt="" />
+        <img src="./calidad_balanceada.avif" alt="" />
         <div>
         <h3>Calidad Balanceada</h3>
         <p>Formulaciones pensadas para rendimiento, salud y consistencia en cada etapa productiva.</p>
@@ -79,7 +108,7 @@
     </article>
 
     <article class="feature">
-        <img src="./assets/ico-nutricion.png" alt="" />
+        <img src="./nutricion_especializada.webp" alt="" />
         <div>
         <h3>Nutrición Especializada</h3>
         <p>Soluciones adaptadas por etapa y necesidad productiva específica de las aves.</p>
@@ -87,7 +116,7 @@
     </article>
 
     <article class="feature">
-        <img src="./assets/ico-resultados.png" alt="" />
+        <img src="./resultado comprobado.webp" alt="" />
         <div>
         <h3>Resultados Comprobados</h3>
         <p>Enfoque técnico con soporte y seguimiento para mejorar los indicadores de producción.</p>
@@ -95,105 +124,138 @@
     </article>
     </section>
 
-    <!-- SECCIÓN SUPERMIX AVES -->
-    <section class="shell section product-detail" id="supermix">
-    <div class="product-detail__grid">
-        <div class="product-detail__content">
-        <h2 class="product-detail__title">SUPERMIX Aves</h2>
+    <section class="shell shell--wide section about-section" id="nosotros">
+    <div class="about-content about-card">
+        <h2>Nosotros</h2>
+        <p class="about-intro">En <strong>AgroBalance</strong> nos dedicamos a brindar soluciones nutricionales de excelencia para la producción avícola.</p>
         
-        <div class="product-detail__section">
-            <h3>Descripción</h3>
-            <p>SUPERMIX Aves es un balanceado premium formulado especialmente para maximizar la producción y salud de aves de postura y engorde. Desarrollado con ingredientes de alta calidad y bajo estrictos controles de calidad, garantiza un óptimo desarrollo, conversión alimenticia y producción de huevos.</p>
-            <p>Nuestro balanceado contiene la combinación perfecta de proteínas, energía, vitaminas y minerales que las aves necesitan en cada etapa de su ciclo productivo.</p>
+        <div class="about-description">
+        <p>Con años de experiencia en el mercado, trabajamos constantemente en el desarrollo de productos que garanticen la mejor performance productiva de tus aves.</p>
+        <p>Nuestro compromiso es ofrecer balanceados de la más alta calidad, respaldados por rigurosos controles y un equipo de profesionales especializados en nutrición animal.</p>
         </div>
 
-        <div class="product-detail__section">
-            <h3>Recomendaciones</h3>
-            <ul>
-            <li>Proporcionar agua limpia y fresca en todo momento</li>
-            <li>Almacenar en lugar fresco y seco, protegido de la humedad</li>
-            <li>Suministrar en comederos limpios y en buenas condiciones</li>
-            <li>Realizar transición gradual de 7 a 10 días al cambiar de alimento</li>
-            <li>Consultar con un técnico veterinario para ajustes específicos según la genética</li>
-            <li>Mantener las instalaciones limpias y bien ventiladas</li>
-            </ul>
-        </div>
-
-        <div class="product-detail__section">
-            <h3>Consumo Recomendado</h3>
-            <div class="consumption-table">
-            <div class="consumption-row">
-                <span class="consumption-label">Pollitas (0-6 semanas):</span>
-                <span class="consumption-value">40-60 g/día</span>
+        <div class="about-values">
+            <div class="value-card" style="background-image: url('./calidad2.png');">
+                <h3>Calidad</h3>
+                <p>Ingredientes premium y procesos certificados para garantizar los mejores resultados</p>
             </div>
-            <div class="consumption-row">
-                <span class="consumption-label">Recría (7-18 semanas):</span>
-                <span class="consumption-value">60-90 g/día</span>
+            <div class="value-card" style="background-image: url('./innovacion2.png');">
+                <h3>Innovación</h3>
+                <p>Investigación constante en nutrición avícola para estar a la vanguardia</p>
             </div>
-            <div class="consumption-row">
-                <span class="consumption-label">Postura (18+ semanas):</span>
-                <span class="consumption-value">100-120 g/día</span>
+            <div class="value-card" style="background-image: url('./confianza2.png');">
+                <h3>Confianza</h3>
+                <p>Resultados comprobados en el campo respaldados por nuestros clientes</p>
             </div>
-            <div class="consumption-row">
-                <span class="consumption-label">Engorde (0-8 semanas):</span>
-                <span class="consumption-value">Libre acceso</span>
-            </div>
-            </div>
-        </div>
-
-        <div class="product-detail__section">
-            <h3>Ingredientes</h3>
-            <p class="ingredients-list">Maíz molido, torta de soja, afrechillo de trigo, carbonato de calcio, fosfato dicálcico, sal común, premezcla vitamínica-mineral, metionina, lisina, aceite vegetal, antioxidantes, antifúngicos permitidos.</p>
-            
-            <div class="nutritional-info">
-            <h4>Análisis Nutricional Garantizado:</h4>
-            <div class="nutritional-grid">
-                <div class="nutritional-item">
-                <span class="nutritional-label">Proteína Bruta:</span>
-                <span class="nutritional-value">16-18%</span>
-                </div>
-                <div class="nutritional-item">
-                <span class="nutritional-label">Energía Metabolizable:</span>
-                <span class="nutritional-value">2.800 kcal/kg</span>
-                </div>
-                <div class="nutritional-item">
-                <span class="nutritional-label">Calcio:</span>
-                <span class="nutritional-value">3.5-4.0%</span>
-                </div>
-                <div class="nutritional-item">
-                <span class="nutritional-label">Fósforo disponible:</span>
-                <span class="nutritional-value">0.4-0.5%</span>
-                </div>
-            </div>
-            </div>
-        </div>
-        </div>
-
-        <!-- IMAGEN DE LA BOLSA DE BALANCEADO -->
-        <div class="product-detail__image">
-            <img src="./bolsa_balanceado.png" alt="SUPERMIX Aves - Bolsa de Balanceado" class="product-bag-image" />
         </div>
     </div>
     </section>
 
-    <section class="shell section" id="nosotros">
-    <h2>Nosotros</h2>
-    <p>En AgroBalance nos dedicamos a brindar soluciones nutricionales de excelencia para la producción avícola. Con años de experiencia en el mercado, trabajamos constantemente en el desarrollo de productos que garanticen la mejor performance productiva de tus aves.</p>
+    <section class="shell shell--wide section contact-section" id="contacto">
+    <div class="contact-wrapper">
+        <h2 class="contact-title">Contáctanos</h2>
+        <p class="contact-subtitle">Estamos aquí para responder todas tus preguntas</p>
+
+        <div class="contact-methods">
+        <a href="https://wa.me/595992814529?text=Hola%2C%20estoy%20interesado%20en%20conocer%20m%C3%A1s%20sobre%20los%20productos%20de%20AgroBalance" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="contact-card contact-card--whatsapp">
+            <div class="contact-icon">
+            <i class="fab fa-whatsapp"></i>
+            </div>
+            <div class="contact-info">
+            <h3>WhatsApp</h3>
+            <p>+595 992 814529</p>
+            </div>
+        </a>
+
+        <a href="https://www.instagram.com/baezdariii" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="contact-card contact-card--instagram">
+            <div class="contact-icon">
+            <i class="fab fa-instagram"></i>
+            </div>
+            <div class="contact-info">
+            <h3>Instagram</h3>
+            <p>@baezdariii</p>
+            </div>
+        </a>
+
+        <a href="mailto:info@agrobalance.com" class="contact-card contact-card--email">
+            <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+            </div>
+            <div class="contact-info">
+            <h3>Email</h3>
+            <p>info@agrobalance.com</p>
+            </div>
+        </a>
+        </div>
+    </div>
     </section>
 
-    <section class="shell section" id="contacto">
-    <h2>Contacto</h2>
-    <p>¿Querés saber más sobre nuestros productos? Contactanos:</p>
-    <p><strong>WhatsApp:</strong> +595 XXX XXX XXX</p>
-    <p><strong>Email:</strong> info@agrobalance.com</p>
+    <section class="shell shell--wide section clients-section" id="clientes">
+    <div class="clients-wrapper">
+        <h2 class="clients-title">Clientes que confían en AgroBalance</h2>
+        <p class="clients-subtitle">Acompañamos a granjas y productores con soluciones nutricionales formuladas para mejorar la productividad, la salud animal y la calidad del huevo.</p>
+
+        <div class="clients-grid">
+        <article class="client-card">
+            <div class="client-logo">
+            <img src="./huevos_vital.png" alt="Huevos Vital" class="client-logo-img" />
+            </div>
+
+            <div class="client-info">
+            <h3 class="client-name">Huevos Vital</h3>
+            
+            <div class="client-detail">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Itauguá, Central – Paraguay</span>
+            </div>
+
+            <div class="client-detail">
+                <i class="fas fa-handshake"></i>
+                <span>Cliente de SUPERMIX Aves – línea postura</span>
+            </div>
+            </div>
+
+            <a href="https://maps.app.goo.gl/sN3Cjza5zkMqkppi9?g_st=iw" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="btn btn--client">
+            <i class="fas fa-map-marker-alt"></i>
+            Ver ubicación
+            </a>
+        </article>
+        </div>
+    </div>
     </section>
 </main>
 
 <footer class="footer">
-    <div class="shell footer__inner">
+    <div class="shell shell--wide footer__inner">
     <p>© <span id="year"></span> AgroBalance. Todos los derechos reservados.</p>
-    <a href="#top">Volver arriba ↑</a>
+    <div class="footer-social">
+        <a href="https://wa.me/595992814529?text=Hola%2C%20estoy%20interesado%20en%20conocer%20m%C3%A1s%20sobre%20los%20productos%20de%20AgroBalance" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://www.instagram.com/baezdariii" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+        </a>
+        <a href="mailto:info@agrobalance.com" aria-label="Email">
+        <i class="fas fa-envelope"></i>
+        </a>
+    </div>
     </div>
 </footer>
+
 </body>
 </html>
