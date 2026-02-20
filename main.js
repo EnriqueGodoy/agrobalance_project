@@ -1,45 +1,75 @@
-// main.js
-(() => {
-const year = document.getElementById("year");
+(function () {
+
+// Year
+var year = document.getElementById("year");
 if (year) year.textContent = new Date().getFullYear();
 
-const toggle = document.querySelector(".nav__toggle");
-const nav = document.querySelector("[data-nav]");
-if (!toggle || !nav) return;
+// Mobile nav
+var toggle = document.querySelector(".nav__toggle");
+var navLinks = document.querySelector("[data-nav]");
 
-toggle.addEventListener("click", () => {
-    const isOpen = nav.classList.toggle("is-open");
+if (toggle && navLinks) {
+toggle.addEventListener("click", function () {
+    var isOpen = navLinks.classList.toggle("is-open");
     toggle.setAttribute("aria-expanded", String(isOpen));
 });
 
-nav.querySelectorAll("a").forEach((a) => {
-    a.addEventListener("click", () => {
-    nav.classList.remove("is-open");
-    toggle.setAttribute("aria-expanded", "false");
+navLinks.querySelectorAll("a").forEach(function (a) {
+    a.addEventListener("click", function () {
+        navLinks.classList.remove("is-open");
+        toggle.setAttribute("aria-expanded", "false");
     });
 });
+}
 
-// Background carousel for hero section
-const carouselBg = document.querySelector(".hero__carousel-bg");
+// Hero carousel
+var carouselBg = document.querySelector(".hero__carousel-bg");
+
 if (carouselBg) {
-    const slides = carouselBg.querySelectorAll(".carousel__slide");
-    let currentSlide = 0;
-    let autoplayInterval;
 
-    function showSlide(index) {
-    slides.forEach((s) => s.classList.remove("carousel__slide--active"));
+var slides = carouselBg.querySelectorAll(".carousel__slide");
+var currentSlide = 0;
+
+function showSlide(index) {
+    slides.forEach(function (s) {
+        s.classList.remove("carousel__slide--active");
+    });
     slides[index].classList.add("carousel__slide--active");
     currentSlide = index;
-    }
-
-    function nextSlide() {
-    showSlide((currentSlide + 1) % slides.length);
-    }
-
-    function startAutoplay() {
-    autoplayInterval = setInterval(nextSlide, 5000);
-    }
-
-    startAutoplay();
 }
+
+if (slides.length > 1) {
+    setInterval(function () {
+        showSlide((currentSlide + 1) % slides.length);
+    }, 5000);
+}
+}
+
+
+// DARK MODE
+var root = document.documentElement;
+var stored = localStorage.getItem("theme");
+
+if (stored === "dark") root.classList.add("dark");
+
+var dmBtn = document.createElement("button");
+dmBtn.className = "dark-mode-btn";
+dmBtn.setAttribute("aria-label", "Cambiar modo oscuro");
+dmBtn.innerHTML = root.classList.contains("dark") ? "☀" : "🌙";
+document.body.appendChild(dmBtn);
+
+dmBtn.addEventListener("click", function () {
+
+var isDark = root.classList.toggle("dark");
+
+dmBtn.innerHTML = isDark ? "☀" : "🌙";
+
+localStorage.setItem("theme", isDark ? "dark" : "light");
+
+});
+
+
+
+
+
 })();

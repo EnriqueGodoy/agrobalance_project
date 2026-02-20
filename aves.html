@@ -1,142 +1,178 @@
-<!-- aves.html -->
 <!doctype html>
 <html lang="es">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Productos especializados para aves - AgroBalance" />
-<title>Productos para Aves - AgroBalance</title>
-
+<meta name="description" content="AgroBalance Aves - Nutricion estrategica para ponedoras." />
+<title>AgroBalance Aves - Nutricion Estrategica para Ponedoras</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="./style.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <script defer src="./main.js"></script>
 </head>
-
 <body>
+
 <header class="header" id="top">
-    <div class="shell">
-    <nav class="nav">
-        <a class="brand" href="./index.html" aria-label="AgroBalance - Inicio">
-        <img class="brand__logo" src="./logotipo.png" alt="AgroBalance" />
-        </a>
-
-        <button class="nav__toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
-        ☰
-        </button>
-
-        <div class="nav__links" data-nav>
-        <a href="./index.html">Inicio</a>
-        <a href="./index.html#nosotros">Nosotros</a>
-        <a href="./index.html#contacto">Contacto</a>
-        </div>
-
-        <a class="btn btn--primary nav__cta" href="./index.html#contacto">Solicitar Información</a>
-    </nav>
+<div class="shell">
+<nav class="nav">
+    <a class="brand" href="./index.html" aria-label="AgroBalance - Inicio">
+    <img class="brand__logo" src="./logotipo.png" alt="AgroBalance" width="96" height="96" />
+    </a>
+    <button class="nav__toggle" type="button" aria-label="Abrir menu" aria-expanded="false">&#9776;</button>
+    <div class="nav__links" data-nav>
+    <a href="./index.html">Inicio</a>
+    <a href="./index.html#nosotros">Nosotros</a>
+    <a href="./index.html#contacto">Contacto</a>
     </div>
+    <a class="btn btn--primary nav__cta" href="./index.html#contacto">Solicitar Informacion</a>
+</nav>
+</div>
 </header>
 
 <main class="main">
-    <section class="shell shell--wide section product-detail" id="supermix" style="padding-top: 100px;">
-    <div class="product-detail__grid">
-        <div class="product-detail__content">
-        <h2 class="product-detail__title">SUPERMIX Aves</h2>
+<section class="shell shell--wide product-detail" id="agrobalance-aves">
+<div class="product-detail__grid">
 
-        <div class="product-detail__section">
-            <h3>Descripción</h3>
-            <p>SUPERMIX Aves es un balanceado premium formulado especialmente para maximizar la producción y salud de aves de postura y engorde. Desarrollado con ingredientes de alta calidad y bajo estrictos controles de calidad, garantiza un óptimo desarrollo, conversión alimenticia y producción de huevos.</p>
-            <p>Nuestro balanceado contiene la combinación perfecta de proteínas, energía, vitaminas y minerales que las aves necesitan en cada etapa de su ciclo productivo.</p>
+    <div class="product-detail__content">
+    <h2 class="product-detail__title">AgroBalance Aves</h2>
+
+    <div class="product-detail__section">
+        <h3>Descripcion</h3>
+        <p><strong>AgroBalance Aves</strong> es una linea integral de balanceados disenada para acompanar a la gallina ponedora desde el primer dia de vida hasta el final del ciclo productivo. Nuestro enfoque se basa en <strong>nutricion estrategica, precision tecnica y adaptacion productiva</strong>.</p>
+        <p>No trabajamos con formulas genericas: desarrollamos estrategias nutricionales ajustadas a cada etapa fisiologica y a cada genetica, con la combinacion perfecta de proteinas, energia, vitaminas y minerales para cada fase productiva.</p>
+    </div>
+
+    <div class="product-detail__section">
+        <h3>Linea Completa por Fase Productiva</h3>
+        <p>Nuestra linea cubre <strong>todas las etapas del ciclo</strong> con formulaciones especificas para cada momento fisiologico:</p>
+        <div class="phases-grid">
+        <div class="phase-card">
+            <p class="phase-card__name"><i class="fas fa-seedling"></i> Pre Inicial</p>
+            <p class="phase-card__desc">Desarrollo temprano, estimulacion del consumo y arranque uniforme del lote.</p>
         </div>
-
-        <div class="product-detail__section">
-            <h3>Recomendaciones</h3>
-            <ul>
-            <li>Proporcionar agua limpia y fresca en todo momento</li>
-            <li>Almacenar en lugar fresco y seco, protegido de la humedad</li>
-            <li>Suministrar en comederos limpios y en buenas condiciones</li>
-            <li>Realizar transición gradual de 7 a 10 días al cambiar de alimento</li>
-            <li>Consultar con un técnico veterinario para ajustes específicos según la genética</li>
-            <li>Mantener las instalaciones limpias y bien ventiladas</li>
-            </ul>
+        <div class="phase-card">
+            <p class="phase-card__name"><i class="fas fa-leaf"></i> Inicial</p>
+            <p class="phase-card__desc">Consolidacion estructural, desarrollo digestivo y crecimiento controlado.</p>
         </div>
-
-        <div class="product-detail__section">
-            <h3>Consumo Recomendado</h3>
-            <div class="consumption-table">
-            <div class="consumption-row">
-                <span class="consumption-label">Pollitas (0-6 semanas):</span>
-                <span class="consumption-value">40-60 g/día</span>
-            </div>
-            <div class="consumption-row">
-                <span class="consumption-label">Recría (7-18 semanas):</span>
-                <span class="consumption-value">60-90 g/día</span>
-            </div>
-            <div class="consumption-row">
-                <span class="consumption-label">Postura (18+ semanas):</span>
-                <span class="consumption-value">100-120 g/día</span>
-            </div>
-            <div class="consumption-row">
-                <span class="consumption-label">Engorde (0-8 semanas):</span>
-                <span class="consumption-value">Libre acceso</span>
-            </div>
-            </div>
+        <div class="phase-card">
+            <p class="phase-card__name"><i class="fas fa-arrow-up"></i> Crecimiento</p>
+            <p class="phase-card__desc">Formacion corporal estrategica y preparacion metabolica para postura.</p>
         </div>
-
-        <div class="product-detail__section">
-            <h3>Ingredientes</h3>
-            <p class="ingredients-list">Maíz molido, torta de soja, afrechillo de trigo, carbonato de calcio, fosfato dicálcico, sal común, premezcla vitamínica-mineral, metionina, lisina, aceite vegetal, antioxidantes, antifúngicos permitidos.</p>
-
-            <div class="nutritional-info">
-            <h4>Análisis Nutricional Garantizado:</h4>
-            <div class="nutritional-grid">
-                <div class="nutritional-item">
-                <span class="nutritional-label">Proteína Bruta:</span>
-                <span class="nutritional-value">16-18%</span>
-                </div>
-                <div class="nutritional-item">
-                <span class="nutritional-label">Energía Metabolizable:</span>
-                <span class="nutritional-value">2.800 kcal/kg</span>
-                </div>
-                <div class="nutritional-item">
-                <span class="nutritional-label">Calcio:</span>
-                <span class="nutritional-value">3.5-4.0%</span>
-                </div>
-                <div class="nutritional-item">
-                <span class="nutritional-label">Fósforo disponible:</span>
-                <span class="nutritional-value">0.4-0.5%</span>
-                </div>
-            </div>
-            </div>
+        <div class="phase-card">
+            <p class="phase-card__name"><i class="fas fa-clock"></i> Pre Postura</p>
+            <p class="phase-card__desc">Transicion nutricional orientada al inicio productivo y estructura osea.</p>
         </div>
+        <div class="phase-card">
+            <p class="phase-card__name"><i class="fas fa-star"></i> Postura 1</p>
+            <p class="phase-card__desc">Soporte al pico de produccion y eficiencia alimenticia maxima.</p>
         </div>
-
-        <div class="product-detail__image">
-        <img src="./bolsa_gallina_balanceado.png" alt="SUPERMIX Aves" class="product-bag-image" />
+        <div class="phase-card">
+            <p class="phase-card__name"><i class="fas fa-egg"></i> Postura 2</p>
+            <p class="phase-card__desc">Sostenimiento de persistencia productiva y calidad de cascara.</p>
+        </div>
+        <div class="phase-card">
+            <p class="phase-card__name"><i class="fas fa-shield-alt"></i> Postura 3</p>
+            <p class="phase-card__desc">Optimizacion de longevidad y estabilidad productiva al final del ciclo.</p>
+        </div>
+        <div class="phase-card">
+            <p class="phase-card__name"><i class="fas fa-infinity"></i> Postura Unica</p>
+            <p class="phase-card__desc">Alternativa eficiente para sistemas que requieren simplificacion operativa.</p>
+        </div>
         </div>
     </div>
-    </section>
+
+    <div class="product-detail__section">
+        <h3>Adaptacion por Genetica</h3>
+        <p>Cada linea genetica posee curvas productivas especificas. Nuestras formulaciones se ajustan segun la raza del plantel para que la nutricion se adapte a la <strong>curva real de produccion</strong>, no a promedios teoricos.</p>
+        <div class="genetics-grid">
+        <div class="genetics-badge"><i class="fas fa-dna"></i><span>Hy-Line</span></div>
+        <div class="genetics-badge"><i class="fas fa-dna"></i><span>Lohmann</span></div>
+        <div class="genetics-badge"><i class="fas fa-dna"></i><span>ISA</span></div>
+        <div class="genetics-badge"><i class="fas fa-dna"></i><span>Otras lineas comerciales</span></div>
+        </div>
+    </div>
+
+    <div class="product-detail__section">
+        <h3>Beneficios Productivos</h3>
+        <div class="benefits-grid">
+        <div class="benefit-item"><i class="fas fa-check-circle"></i><span>Mayor uniformidad de lote</span></div>
+        <div class="benefit-item"><i class="fas fa-check-circle"></i><span>Correcto desarrollo oseo y estructural</span></div>
+        <div class="benefit-item"><i class="fas fa-check-circle"></i><span>Optimizacion de conversion alimenticia</span></div>
+        <div class="benefit-item"><i class="fas fa-check-circle"></i><span>Mejor calidad de cascara</span></div>
+        <div class="benefit-item"><i class="fas fa-check-circle"></i><span>Persistencia de postura</span></div>
+        <div class="benefit-item"><i class="fas fa-check-circle"></i><span>Mayor estabilidad productiva y rentabilidad</span></div>
+        </div>
+    </div>
+
+    <div class="product-detail__section">
+        <h3>Recomendaciones de Manejo</h3>
+        <ul>
+        <li>Proporcionar agua limpia y fresca en todo momento</li>
+        <li>Almacenar en lugar fresco y seco, protegido de la humedad</li>
+        <li>Suministrar en comederos limpios y en buenas condiciones</li>
+        <li>Realizar transicion gradual de 7 a 10 dias al cambiar de fase</li>
+        <li>Consultar con un tecnico veterinario para ajustes especificos segun la genetica</li>
+        <li>Mantener las instalaciones limpias y bien ventiladas</li>
+        </ul>
+    </div>
+
+    <div class="product-detail__section">
+        <h3>Consumo Recomendado</h3>
+        <div class="consumption-table">
+        <div class="consumption-row">
+            <span class="consumption-label">Pollitas (0-6 semanas):</span>
+            <span class="consumption-value">40-60 g/dia</span>
+        </div>
+        <div class="consumption-row">
+            <span class="consumption-label">Recria (7-18 semanas):</span>
+            <span class="consumption-value">60-90 g/dia</span>
+        </div>
+        <div class="consumption-row">
+            <span class="consumption-label">Postura (18+ semanas):</span>
+            <span class="consumption-value">100-120 g/dia</span>
+        </div>
+        </div>
+    </div>
+
+    <div class="product-detail__section">
+        <h3>Ingredientes</h3>
+        <p class="ingredients-list">Maiz molido, torta de soja, afrechillo de trigo, carbonato de calcio, fosfato dicalcico, sal comun, premezcla vitaminica-mineral, metionina, lisina, aceite vegetal, antioxidantes, antifungicos permitidos.</p>
+    </div>
+
+    <div class="product-detail__section">
+        <a href="./index.html#contacto" class="btn btn--success btn--cta-product">
+        <i class="fab fa-whatsapp"></i>
+        Consultar por este producto
+        </a>
+    </div>
+    </div>
+
+    <div class="product-detail__image">
+    <img src="./agrobalance_bolsa.png" alt="AgroBalance Aves" class="product-bag-image" loading="eager" />
+    </div>
+
+</div>
+</section>
 </main>
 
 <footer class="footer">
-    <div class="shell shell--wide footer__inner">
-    <p>© <span id="year"></span> AgroBalance. Todos los derechos reservados.</p>
-    <div class="footer-social">
-        <a href="https://wa.me/595992814529?text=Hola%2C%20estoy%20interesado%20en%20conocer%20m%C3%A1s%20sobre%20los%20productos%20de%20AgroBalance" 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        aria-label="WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-        </a>
-        <a href="https://www.instagram.com/baezdariii" 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        aria-label="Instagram">
-        <i class="fab fa-instagram"></i>
-        </a>
-        <a href="mailto:info@agrobalance.com" aria-label="Email">
-        <i class="fas fa-envelope"></i>
-        </a>
-    </div>
-    </div>
+<div class="shell shell--wide footer__inner">
+<p>&copy; <span id="year"></span> AgroBalance. Todos los derechos reservados.</p>
+<div class="footer-social">
+    <a href="https://wa.me/595992814529?text=Hola%2C%20estoy%20interesado%20en%20conocer%20m%C3%A1s%20sobre%20los%20productos%20de%20AgroBalance"
+    target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="https://www.instagram.com/baezdariii"
+    target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+    <i class="fab fa-instagram"></i>
+    </a>
+    <a href="mailto:info@agrobalance.com" aria-label="Email">
+    <i class="fas fa-envelope"></i>
+    </a>
+</div>
+</div>
 </footer>
 
 </body>
