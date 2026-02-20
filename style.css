@@ -47,6 +47,126 @@ transition: background .3s ease, color .3s ease;
 }
 img { max-width: 100%; display: block; }
 
+/* =============================================
+   SCROLL ANIMATIONS
+   ============================================= */
+
+/* Estados iniciales — invisible antes de entrar en pantalla */
+.reveal {
+opacity: 0;
+transform: translateY(36px);
+transition: opacity .65s cubic-bezier(0.22,1,0.36,1),
+            transform .65s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal-left {
+opacity: 0;
+transform: translateX(-40px);
+transition: opacity .65s cubic-bezier(0.22,1,0.36,1),
+            transform .65s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal-right {
+opacity: 0;
+transform: translateX(40px);
+transition: opacity .65s cubic-bezier(0.22,1,0.36,1),
+            transform .65s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal-scale {
+opacity: 0;
+transform: scale(0.88);
+transition: opacity .6s cubic-bezier(0.22,1,0.36,1),
+            transform .6s cubic-bezier(0.22,1,0.36,1);
+}
+
+/* Estado visible — cuando entra en pantalla */
+.reveal.is-visible,
+.reveal-left.is-visible,
+.reveal-right.is-visible,
+.reveal-scale.is-visible {
+opacity: 1;
+transform: none;
+}
+
+/* Delays para stagger en grids */
+.stagger-1 { transition-delay: .08s; }
+.stagger-2 { transition-delay: .18s; }
+.stagger-3 { transition-delay: .28s; }
+.stagger-4 { transition-delay: .38s; }
+.stagger-5 { transition-delay: .48s; }
+.stagger-6 { transition-delay: .58s; }
+.stagger-7 { transition-delay: .68s; }
+.stagger-8 { transition-delay: .78s; }
+
+/* Respeta preferencia de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+.reveal, .reveal-left, .reveal-right, .reveal-scale {
+    opacity: 1; transform: none; transition: none;
+}
+}
+
+/* =============================================
+   SCROLL PROGRESS BAR
+   ============================================= */
+.scroll-progress {
+position: fixed;
+top: 0; left: 0;
+height: 3px;
+width: 0%;
+background: linear-gradient(90deg, var(--green) 0%, var(--blue) 100%);
+z-index: 9999;
+transition: width .1s linear;
+border-radius: 0 2px 2px 0;
+box-shadow: 0 0 8px rgba(47,122,75,.5);
+}
+
+/* =============================================
+   RIPPLE EN BOTONES
+   ============================================= */
+.btn { overflow: hidden; }
+.ripple-effect {
+position: absolute;
+border-radius: 50%;
+background: rgba(255,255,255,.35);
+transform: scale(0);
+animation: ripple-anim .65s linear;
+pointer-events: none;
+}
+@keyframes ripple-anim {
+to { transform: scale(1); opacity: 0; }
+}
+
+/* =============================================
+   COUNTER SECTION
+   ============================================= */
+.counters-section {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 24px;
+padding: 40px 0 20px;
+}
+.counter-card {
+background: var(--surface);
+border: 2px solid var(--border);
+border-radius: 20px;
+padding: 32px 20px;
+text-align: center;
+box-shadow: 0 6px 20px rgba(47,95,134,.07);
+transition: transform .3s ease, box-shadow .3s ease;
+}
+.counter-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(47,95,134,.13); }
+.counter-card__number {
+font-family: 'Lora', serif;
+font-size: clamp(2.2rem, 4vw, 3rem);
+font-weight: 700;
+color: var(--blue);
+line-height: 1;
+margin-bottom: 8px;
+}
+.counter-card__label {
+font-size: .95rem;
+color: var(--muted);
+font-weight: 600;
+}
+
 .main,
 .product-detail,
 .about-section,
@@ -513,9 +633,9 @@ color: var(--text); margin: 0 0 16px; text-align: center;
 .about-description p:last-child { margin-bottom: 0; }
 .value-card {
 position: relative; width: 100%; min-height: 300px;
-border-radius: 16px 16px 0 0; overflow: hidden;
-transition: all .35s cubic-bezier(0.4,0,0.2,1);
-box-shadow: none;
+border-radius: 16px 16px 0 0;
+transition: transform .15s ease, box-shadow .15s ease;
+will-change: transform;
 cursor: pointer;
 background-size: cover; background-position: center; background-repeat: no-repeat;
 display: flex; flex-direction: column; justify-content: flex-end; padding: 28px;
@@ -656,10 +776,10 @@ transition: all .3s ease; font-size: 1.1rem;
 .product-cat__icon { width: 80px; height: 80px; }
 .product-cat { padding: 10px 6px; }
 .product-cat__label { font-size: .9rem; }
-/* Features en mobile: columna simple */
 .features { grid-template-columns: 1fr; gap: 16px; }
 .feature { padding: 20px 18px; gap: 16px; }
 .feature img { width: 68px; height: 68px; }
+.counters-section { grid-template-columns: 1fr; gap: 16px; }
 .product-detail__grid { grid-template-columns: 1fr; }
 .product-detail__image { position: static; }
 .product-bag-image { max-width: 320px; margin: 0 auto; }
