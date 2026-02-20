@@ -60,9 +60,17 @@ dmBtn.addEventListener("click", function () {
 });
 
 // =============================================
-// 1. SCROLL ANIMATIONS — IntersectionObserver
+// 1. SCROLL ANIMATIONS
+// FIX: forzar check inicial para elementos ya
+// visibles en pantalla al cargar (mobile/GitHub Pages)
 // =============================================
 var animatedEls = document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-scale");
+
+function isInViewport(el) {
+    var rect = el.getBoundingClientRect();
+    return rect.top < window.innerHeight && rect.bottom > 0;
+}
+
 if ("IntersectionObserver" in window && animatedEls.length > 0) {
     var scrollObserver = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
@@ -71,8 +79,16 @@ if ("IntersectionObserver" in window && animatedEls.length > 0) {
                 scrollObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
-    animatedEls.forEach(function (el) { scrollObserver.observe(el); });
+    }, { threshold: 0, rootMargin: "0px" });
+
+    animatedEls.forEach(function (el) {
+        // Si ya está en pantalla al cargar, mostrar directo
+        if (isInViewport(el)) {
+            el.classList.add("is-visible");
+        } else {
+            scrollObserver.observe(el);
+        }
+    });
 } else {
     animatedEls.forEach(function (el) { el.classList.add("is-visible"); });
 }
@@ -95,51 +111,64 @@ window.addEventListener("scroll", function () {
 // 3. COUNTER ANIMADO
 // =============================================
 var counters = document.querySelectorAll("[data-counter]");
-if (counters.length > 0 && "IntersectionObserver" in window) {
-    var counterObserver = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-                var el = entry.target;
-                var target = parseInt(el.getAttribute("data-counter"), 10);
-                var suffix = el.getAttribute("data-suffix") || "";
-                var duration = 1800;
-                var start = null;
-                function step(ts) {
-                    if (!start) start = ts;
-                    var progress = Math.min((ts - start) / duration, 1);
-                    // Ease out quad
-                    var eased = 1 - (1 - progress) * (1 - progress);
-                    el.textContent = Math.floor(eased * target) + suffix;
-                    if (progress < 1) requestAnimationFrame(step);
-                    else el.textContent = target + suffix;
+if (counters.length > 0) {
+    function animateCounter(el) {
+        var target = parseInt(el.getAttribute("data-counter"), 10);
+        var suffix = el.getAttribute("data-suffix") || "";
+        var duration = 1600;
+        var start = null;
+        function step(ts) {
+            if (!start) start = ts;
+            var progress = Math.min((ts - start) / duration, 1);
+            var eased = 1 - (1 - progress) * (1 - progress);
+            el.textContent = Math.floor(eased * target) + suffix;
+            if (progress < 1) requestAnimationFrame(step);
+            else el.textContent = target + suffix;
+        }
+        requestAnimationFrame(step);
+    }
+
+    if ("IntersectionObserver" in window) {
+        var counterObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    animateCounter(entry.target);
+                    counterObserver.unobserve(entry.target);
                 }
-                requestAnimationFrame(step);
-                counterObserver.unobserve(el);
+            });
+        }, { threshold: 0, rootMargin: "0px" });
+        counters.forEach(function (c) {
+            if (isInViewport(c)) {
+                animateCounter(c);
+            } else {
+                counterObserver.observe(c);
             }
         });
-    }, { threshold: 0.5 });
-    counters.forEach(function (c) { counterObserver.observe(c); });
+    } else {
+        counters.forEach(function (c) {
+            c.textContent = c.getAttribute("data-counter") + (c.getAttribute("data-suffix") || "");
+        });
+    }
 }
 
 // =============================================
-// 4. HOVER 3D EN VALUE-CARDS
+// 4. HOVER 3D EN VALUE-CARDS (solo desktop)
 // =============================================
-var valueCards = document.querySelectorAll(".value-card");
-valueCards.forEach(function (card) {
-    card.addEventListener("mousemove", function (e) {
-        var rect = card.getBoundingClientRect();
-        var x = e.clientX - rect.left;
-        var y = e.clientY - rect.top;
-        var cx = rect.width / 2;
-        var cy = rect.height / 2;
-        var rotateX = ((y - cy) / cy) * -10;
-        var rotateY = ((x - cx) / cx) * 10;
-        card.style.transform = "perspective(700px) rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg) scale(1.03)";
+if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    document.querySelectorAll(".value-card").forEach(function (card) {
+        card.addEventListener("mousemove", function (e) {
+            var rect = card.getBoundingClientRect();
+            var x = e.clientX - rect.left;
+            var y = e.clientY - rect.top;
+            var rotateX = ((y - rect.height / 2) / rect.height) * -12;
+            var rotateY = ((x - rect.width / 2) / rect.width) * 12;
+            card.style.transform = "perspective(700px) rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg) scale(1.03)";
+        });
+        card.addEventListener("mouseleave", function () {
+            card.style.transform = "";
+        });
     });
-    card.addEventListener("mouseleave", function () {
-        card.style.transform = "";
-    });
-});
+}
 
 // =============================================
 // 5. RIPPLE EN BOTONES
@@ -150,11 +179,11 @@ document.querySelectorAll(".btn").forEach(function (btn) {
         var ripple = document.createElement("span");
         ripple.className = "ripple-effect";
         var size = Math.max(rect.width, rect.height) * 2;
-        ripple.style.width = ripple.style.height = size + "px";
-        ripple.style.left = (e.clientX - rect.left - size / 2) + "px";
-        ripple.style.top = (e.clientY - rect.top - size / 2) + "px";
+        ripple.style.cssText = "width:" + size + "px;height:" + size + "px;" +
+            "left:" + (e.clientX - rect.left - size / 2) + "px;" +
+            "top:" + (e.clientY - rect.top - size / 2) + "px;";
         btn.appendChild(ripple);
-        setTimeout(function () { ripple.remove(); }, 700);
+        setTimeout(function () { if (ripple.parentNode) ripple.remove(); }, 700);
     });
 });
 
@@ -170,37 +199,21 @@ if (heroTitle) {
         l.textContent = "";
         l.style.opacity = "1";
     });
-
     var lineIdx = 0;
     var charIdx = 0;
-    var typingDelay = 55;
-
     function typeNext() {
         if (lineIdx >= lines.length) return;
         if (charIdx < fullTexts[lineIdx].length) {
             lines[lineIdx].textContent += fullTexts[lineIdx][charIdx];
             charIdx++;
-            setTimeout(typeNext, typingDelay);
+            setTimeout(typeNext, 52);
         } else {
             lineIdx++;
             charIdx = 0;
-            if (lineIdx < lines.length) setTimeout(typeNext, 220);
+            if (lineIdx < lines.length) setTimeout(typeNext, 200);
         }
     }
-
-    // Esperar a que el reveal-left esté visible
-    var titleEl = heroTitle;
-    if ("IntersectionObserver" in window) {
-        var titleObserver = new IntersectionObserver(function (entries) {
-            if (entries[0].isIntersecting) {
-                setTimeout(typeNext, 400);
-                titleObserver.disconnect();
-            }
-        }, { threshold: 0.3 });
-        titleObserver.observe(titleEl);
-    } else {
-        setTimeout(typeNext, 400);
-    }
+    setTimeout(typeNext, 300);
 }
 
 })();
