@@ -23,7 +23,7 @@
 <meta property="og:title" content="AgroBalance - Nutrición Avanzada para una Producción Saludable" />
 <meta property="og:description" content="Balanceados especializados para aves ponedoras, ganado, porcinos y ovinos. Respaldo técnico y soluciones nutricionales adaptadas a cada etapa productiva. Paraguay." />
 <meta property="og:url" content="https://agrobalance.com.py/" />
-<meta property="og:image" content="https://agrobalance.com.py/logotipo.png" />
+<meta property="og:image" content="https://agrobalance.com.py/assets/logotipo.png" />
 <meta property="og:locale" content="es_PY" />
 <meta property="og:site_name" content="AgroBalance" />
 
@@ -31,7 +31,7 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="AgroBalance - Nutrición para Producción Animal | Paraguay" />
 <meta name="twitter:description" content="Balanceados de alta calidad para aves, ganado, porcinos y ovinos. Nutrición estratégica con soporte técnico especializado." />
-<meta name="twitter:image" content="https://agrobalance.com.py/logotipo.png" />
+<meta name="twitter:image" content="https://agrobalance.com.py/assets/logotipo.png" />
 
 <!-- Schema.org LocalBusiness -->
 <script type="application/ld+json">
@@ -41,40 +41,33 @@
 "name": "AgroBalance",
 "description": "Empresa especializada en nutrición animal para producción avícola, ganadera, porcina y ovina en Paraguay.",
 "url": "https://agrobalance.com.py",
-"logo": "https://agrobalance.com.py/logotipo.png",
-"image": "https://agrobalance.com.py/logotipo.png",
+"logo": "https://agrobalance.com.py/assets/logotipo.png",
+"image": "https://agrobalance.com.py/assets/logotipo.png",
 "telephone": "+595991309899",
 "email": "agrobalance@gmail.com",
-"address": {
-"@type": "PostalAddress",
-"addressLocality": "Itauguá",
-"addressRegion": "Central",
-"addressCountry": "PY"
-},
-"geo": {
-"@type": "GeoCoordinates",
-"latitude": -25.378746,
-"longitude": -57.388203
-},
-"sameAs": [
-"https://www.instagram.com/baezdariii",
-"https://wa.me/595991309899"
-],
-"areaServed": {
-"@type": "Country",
-"name": "Paraguay"
-},
+"address": { "@type": "PostalAddress", "addressLocality": "Itauguá", "addressRegion": "Central", "addressCountry": "PY" },
+"geo": { "@type": "GeoCoordinates", "latitude": -25.378746, "longitude": -57.388203 },
+"sameAs": ["https://www.instagram.com/baezdariii", "https://wa.me/595991309899"],
+"areaServed": { "@type": "Country", "name": "Paraguay" },
 "priceRange": "$$"
 }
 </script>
 
 <!-- Favicon -->
-<link rel="icon" type="image/png" href="./logotipo.png" />
-<link rel="apple-touch-icon" href="./logotipo.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" type="image/png" href="./assets/logotipo.png" />
+<link rel="apple-touch-icon" href="./assets/logotipo.png" />
+
+<!-- Fuentes: preconnect + carga diferida para no bloquear render -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Lora:wght@500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Lora:wght@500;600;700&display=swap" /></noscript>
+
+<!-- Font Awesome diferido -->
+<link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'" />
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" /></noscript>
+
 <link rel="stylesheet" href="./style.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <script defer src="./main.js"></script>
 </head>
 <body>
@@ -83,7 +76,7 @@
 <div class="shell">
 <nav class="nav">
     <a class="brand" href="#top" aria-label="AgroBalance - Inicio">
-    <img class="brand__logo" src="./logotipo.png" alt="AgroBalance" width="96" height="96" />
+    <img class="brand__logo" src="./assets/logotipo.png" alt="AgroBalance" width="96" height="96" />
     </a>
     <button class="nav__toggle" type="button" aria-label="Abrir menú" aria-expanded="false">&#9776;</button>
     <div class="nav__links" data-nav>
@@ -99,7 +92,7 @@
 <section class="hero hero--with-carousel">
 <div class="hero__carousel-bg">
 <div class="carousel__slide carousel__slide--active">
-    <img src="./fondo_balanceado2.png" alt="Fondo AgroBalance" loading="eager" />
+    <img src="./assets/fondo_balanceado2.png" alt="Fondo AgroBalance" loading="eager" fetchpriority="high" width="1920" height="900" />
 </div>
 </div>
 <div class="hero__backdrop" aria-hidden="true"></div>
@@ -125,25 +118,25 @@
     <div class="products__grid">
         <a class="product-cat product-cat--active" href="./aves.html" aria-label="Productos para Aves">
         <div class="product-cat__icon">
-            <img src="./logo_gallina.png" alt="Aves" />
+            <img src="./assets/aves_icono.webp" alt="Aves" width="120" height="120" />
         </div>
         <span class="product-cat__label">Aves</span>
         </a>
         <a class="product-cat product-cat--soon" href="#" aria-label="Próximamente: Bovino">
         <div class="product-cat__icon">
-            <img src="./logo_vaca.png" alt="Bovino" />
+            <img src="./assets/bovinos_icono.webp" alt="Bovino" width="120" height="120" />
         </div>
         <span class="product-cat__label">Bovino</span>
         </a>
         <a class="product-cat product-cat--soon" href="#" aria-label="Próximamente: Porcino">
         <div class="product-cat__icon">
-            <img src="./logo_cerdo.png" alt="Porcino" />
+            <img src="./assets/porcinos_icono.webp" alt="Porcino" width="120" height="120" />
         </div>
         <span class="product-cat__label">Porcino</span>
         </a>
         <a class="product-cat product-cat--soon" href="#" aria-label="Próximamente: Ovino">
         <div class="product-cat__icon">
-            <img src="./logo_oveja.png" alt="Ovino" />
+            <img src="./assets/ovinos_icono.webp" alt="Ovino" width="120" height="120" />
         </div>
         <span class="product-cat__label">Ovino</span>
         </a>
@@ -156,21 +149,21 @@
 <main class="main">
 <section class="shell features" aria-label="Características">
 <article class="feature reveal stagger-1">
-    <img src="./calidad_balanceada.avif" alt="Calidad Balanceada" loading="lazy" width="110" height="110" />
+    <img src="./assets/calidad_balanceada.avif" alt="Calidad Balanceada" loading="lazy" width="110" height="110" />
     <div>
     <h3>Calidad Balanceada</h3>
     <p>Formulaciones pensadas para rendimiento, salud y consistencia en cada etapa productiva.</p>
     </div>
 </article>
 <article class="feature reveal stagger-2">
-    <img src="./nutricion_especializada.webp" alt="Nutrición Especializada" loading="lazy" width="110" height="110" />
+    <img src="./assets/nutricion_especializada.webp" alt="Nutrición Especializada" loading="lazy" width="110" height="110" />
     <div>
     <h3>Nutrición Especializada</h3>
     <p>Soluciones adaptadas por etapa y necesidad productiva específica de las aves.</p>
     </div>
 </article>
 <article class="feature reveal stagger-3">
-    <img src="./resultado comprobado.webp" alt="Resultados Comprobados" loading="lazy" width="110" height="110" />
+    <img src="./assets/resultado comprobado.webp" alt="Resultados Comprobados" loading="lazy" width="110" height="110" />
     <div>
     <h3>Resultados Comprobados</h3>
     <p>Enfoque técnico con soporte y seguimiento para mejorar los indicadores de producción.</p>
@@ -204,15 +197,15 @@
     <p>Nuestro compromiso es ofrecer balanceados de la más alta calidad, respaldados por rigurosos controles y un equipo de profesionales especializados en nutrición animal.</p>
     </div>
     <div class="about-values">
-    <div class="value-card reveal-scale stagger-1" style="background-image: url('./calidad2.jpg');">
+    <div class="value-card reveal-scale stagger-1" style="background-image:url('./assets/calidad2.jpg')">
         <h3>Calidad</h3>
         <p>Ingredientes premium y procesos certificados para garantizar los mejores resultados</p>
     </div>
-    <div class="value-card reveal-scale stagger-2" style="background-image: url('./innovacion2.jpg');">
+    <div class="value-card reveal-scale stagger-2" style="background-image:url('./assets/innovacion2.jpg')">
         <h3>Innovación</h3>
         <p>Investigación constante en nutrición avícola para estar a la vanguardia</p>
     </div>
-    <div class="value-card reveal-scale stagger-3" style="background-image: url('./confianza2.jpg');">
+    <div class="value-card reveal-scale stagger-3" style="background-image:url('./assets/confianza2.jpg')">
         <h3>Confianza</h3>
         <p>Resultados comprobados en el campo respaldados por nuestros clientes</p>
     </div>
@@ -261,7 +254,7 @@
     <div class="clients-grid">
     <article class="client-card reveal stagger-2">
         <div class="client-logo">
-        <img src="./huevos_vital.JPG" alt="Huevos Vital - Granja Baeza" class="client-logo-img" loading="lazy" />
+        <img src="./assets/huevos_vital.JPG" alt="Huevos Vital - Granja Baeza" class="client-logo-img" loading="lazy" width="200" height="130" />
         </div>
         <div class="client-info">
         <h3 class="client-name">Huevos Vital</h3>
@@ -275,8 +268,8 @@
         </div>
         </div>
         <a href="https://www.google.com/maps/place/25°22'43.5%22S+57°23'17.5%22W/@-25.3785609,-57.3882934,286m/data=!3m1!1e3!4m4!3m3!8m2!3d-25.378746!4d-57.3882027"
-        target="_blank" rel="noopener noreferrer"
-        class="btn btn--client">
+            target="_blank" rel="noopener noreferrer"
+            class="btn btn--client">
         <i class="fas fa-map-marker-alt"></i>
         Ver ubicación
         </a>
@@ -291,11 +284,10 @@
 <p>&copy; <span id="year"></span> AgroBalance. Todos los derechos reservados.</p>
 <div class="footer-social">
     <a href="https://wa.me/595991309899?text=Hola%2C%20estoy%20interesado%20en%20conocer%20m%C3%A1s%20sobre%20los%20productos%20de%20AgroBalance"
-    target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+        target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
     <i class="fab fa-whatsapp"></i>
     </a>
-    <a href="https://www.instagram.com/baezdariii"
-    target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+    <a href="https://www.instagram.com/baezdariii" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
     <i class="fab fa-instagram"></i>
     </a>
     <a href="mailto:agrobalance@gmail.com" aria-label="Email">
