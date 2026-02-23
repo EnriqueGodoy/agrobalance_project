@@ -61,8 +61,6 @@ dmBtn.addEventListener("click", function () {
 
 // =============================================
 // 1. SCROLL ANIMATIONS
-// FIX: forzar check inicial para elementos ya
-// visibles en pantalla al cargar (mobile/GitHub Pages)
 // =============================================
 var animatedEls = document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-scale");
 
@@ -82,7 +80,6 @@ if ("IntersectionObserver" in window && animatedEls.length > 0) {
     }, { threshold: 0, rootMargin: "0px" });
 
     animatedEls.forEach(function (el) {
-        // Si ya está en pantalla al cargar, mostrar directo
         if (isInViewport(el)) {
             el.classList.add("is-visible");
         } else {
@@ -215,5 +212,17 @@ if (heroTitle) {
     }
     setTimeout(typeNext, 300);
 }
+
+// =============================================
+// 7. PRODUCT-CAT: pausa bounce al hover en mobile
+// =============================================
+document.querySelectorAll(".product-cat").forEach(function(cat) {
+    cat.addEventListener("touchstart", function() {
+        cat.classList.add("touched");
+    }, { passive: true });
+    cat.addEventListener("touchend", function() {
+        setTimeout(function() { cat.classList.remove("touched"); }, 400);
+    }, { passive: true });
+});
 
 })();

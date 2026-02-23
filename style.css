@@ -14,9 +14,13 @@
 --bg: #f1f5f9;
 --surface: #ffffff;
 --border: rgba(47,95,134,.12);
---feature-blue: #E0F2FE;
---feature-green: #D1FAE5;
---feature-amber: #FEF3C7;
+/* Features monocromo azul/slate */
+--feature-1-bg: #e8eef4;
+--feature-1-border: #c0cedb;
+--feature-2-bg: #dce6ef;
+--feature-2-border: #b0c4d6;
+--feature-3-bg: #d0dceb;
+--feature-3-border: #a0b8cc;
 }
 
 html.dark {
@@ -31,9 +35,12 @@ html.dark {
 --bg: #0f172a;
 --surface: #1e293b;
 --border: rgba(96,165,250,.18);
---feature-blue: #1e3a5f;
---feature-green: #14532d;
---feature-amber: #451a03;
+--feature-1-bg: #1a2a3a;
+--feature-1-border: #2a3f55;
+--feature-2-bg: #152233;
+--feature-2-border: #253a50;
+--feature-3-bg: #111d2d;
+--feature-3-border: #1f3347;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -51,7 +58,6 @@ img { max-width: 100%; display: block; }
    SCROLL ANIMATIONS
    ============================================= */
 
-/* Estados iniciales — invisible antes de entrar en pantalla */
 .reveal {
 opacity: 0;
 transform: translateY(36px);
@@ -77,7 +83,6 @@ transition: opacity .6s cubic-bezier(0.22,1,0.36,1),
             transform .6s cubic-bezier(0.22,1,0.36,1);
 }
 
-/* Estado visible — cuando entra en pantalla */
 .reveal.is-visible,
 .reveal-left.is-visible,
 .reveal-right.is-visible,
@@ -86,7 +91,6 @@ opacity: 1;
 transform: none;
 }
 
-/* Delays para stagger en grids */
 .stagger-1 { transition-delay: .08s; }
 .stagger-2 { transition-delay: .18s; }
 .stagger-3 { transition-delay: .28s; }
@@ -96,7 +100,6 @@ transform: none;
 .stagger-7 { transition-delay: .68s; }
 .stagger-8 { transition-delay: .78s; }
 
-/* Respeta preferencia de movimiento reducido */
 @media (prefers-reduced-motion: reduce) {
 .reveal, .reveal-left, .reveal-right, .reveal-scale {
     opacity: 1; transform: none; transition: none;
@@ -334,113 +337,306 @@ user-select: none; cursor: pointer;
 white-space: nowrap; border: none;
 }
 .btn--primary { background: var(--blue); color: #fff; }
-.btn--success { background: var(--green); color: #fff; padding: 15px 30px; font-size: 1.05rem; }
+
+/* btn--success menor y más compacto */
+.btn--success {
+background: var(--green); color: #fff;
+padding: 9px 18px; font-size: .88rem;
+border-radius: 12px;
+}
+
 .btn--cta-product { gap: 10px; }
 .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(0,0,0,.18); }
 
-/* Products grid in hero */
+/* =============================================
+   PRODUCT BUTTONS — REDISEÑO COMPLETO
+   Botones grandes, visibles, con efecto pulse
+   ============================================= */
 .hero__products {
 width: 100%; max-width: 680px;
 justify-self: end;
-display: flex; flex-direction: column; gap: 24px;
+display: flex; flex-direction: column; gap: 20px;
 padding: 0; background: transparent;
 }
+/* =============================================
+   PRODUCTS TITLE — pill con fondo propio, siempre legible
+   ============================================= */
 .products__title {
-margin: 0 0 8px;
-font-family: 'Lora', serif;
-font-size: clamp(1.6rem, 3vw, 2.2rem);
-font-weight: 700; color: var(--blue-2);
+margin: 0 0 24px;
 text-align: center;
-text-shadow: 0 2px 8px rgba(255,255,255,0.9);
+display: flex; flex-direction: column; align-items: center; gap: 0;
 }
-html.dark .products__title { text-shadow: 0 2px 8px rgba(0,0,0,0.7); }
+.products__title-main {
+font-family: 'Outfit', sans-serif;
+font-size: clamp(.72rem, 1.4vw, .88rem);
+font-weight: 700;
+color: #fff;
+text-transform: uppercase;
+letter-spacing: 3.5px;
+background: rgba(0,0,0,.38);
+backdrop-filter: blur(8px);
+padding: 5px 18px;
+border-radius: 30px 30px 0 0;
+border: 1px solid rgba(255,255,255,.18);
+}
+.products__title-accent {
+font-family: 'Lora', serif;
+font-size: clamp(1.8rem, 3.8vw, 2.7rem);
+font-weight: 700;
+color: #fff;
+background: linear-gradient(135deg, rgba(47,95,134,.85) 0%, rgba(37,74,103,.9) 100%);
+backdrop-filter: blur(10px);
+padding: 8px 28px 12px;
+border-radius: 0 0 20px 20px;
+border: 1px solid rgba(255,255,255,.22);
+border-top: none;
+letter-spacing: -0.3px;
+display: block;
+box-shadow: 0 8px 24px rgba(0,0,0,.25);
+position: relative;
+}
+/* Línea dorada abajo del pill */
+.products__title-accent::after {
+content: '';
+position: absolute;
+bottom: -1px; left: 20%; right: 20%;
+height: 3px;
+background: linear-gradient(90deg, transparent, #f5c842, transparent);
+border-radius: 0 0 3px 3px;
+}
+html.dark .products__title-main {
+background: rgba(0,0,0,.55);
+}
+html.dark .products__title-accent {
+background: linear-gradient(135deg, rgba(15,23,42,.88) 0%, rgba(30,41,59,.92) 100%);
+color: #e2e8f0;
+}
+
+/* =============================================
+   PRODUCTS GRID
+   ============================================= */
 .products__grid {
 display: grid;
 grid-template-columns: repeat(4, 1fr);
-gap: 12px; max-width: 560px; margin: 0 auto;
+gap: 10px;
+max-width: 600px;
+margin: 0 auto;
+align-items: stretch; /* todas las cards misma altura */
 }
+
+/* =============================================
+   PRODUCT-CAT — card fachera con efecto interno
+   ============================================= */
 .product-cat {
 display: flex; flex-direction: column;
-align-items: center; gap: 8px;
+align-items: center; justify-content: space-between;
+gap: 0;
 text-decoration: none;
-padding: 14px 8px; border-radius: 16px;
-background: transparent; border: none;
-transition: all .35s cubic-bezier(0.4,0,0.2,1);
+padding: 16px 8px 14px;
+border-radius: 22px;
+background: rgba(255,255,255,0.96);
+border: 2px solid rgba(255,255,255,.55);
+box-shadow: 0 8px 28px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.9);
+transition: transform .3s cubic-bezier(0.34,1.56,0.64,1),
+            box-shadow .3s ease,
+            border-color .3s ease;
 cursor: pointer;
+position: relative;
+overflow: hidden; /* para el shimmer */
+opacity: 1;
 }
-.product-cat:hover { transform: translateY(-10px) scale(1.06); }
+html.dark .product-cat {
+background: rgba(22,34,54,0.96);
+border-color: rgba(96,165,250,.28);
+box-shadow: 0 8px 28px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.06);
+}
+
+/* Shimmer sweep interno — el efecto fachero que pediste */
+.product-cat::before {
+content: '';
+position: absolute;
+top: 0; left: -100%; width: 60%; height: 100%;
+background: linear-gradient(
+    105deg,
+    transparent 20%,
+    rgba(255,255,255,.55) 50%,
+    transparent 80%
+);
+transition: left .55s ease;
+pointer-events: none;
+z-index: 2;
+border-radius: 22px;
+}
+.product-cat:hover::before { left: 160%; }
+
+/* Borde inferior de color por animal — siempre visible */
+.product-cat::after {
+content: '';
+position: absolute;
+bottom: 0; left: 10%; right: 10%;
+height: 3px;
+border-radius: 0 0 4px 4px;
+transition: opacity .3s ease, width .3s ease;
+opacity: 0.5;
+}
+.product-cat:nth-child(1)::after { background: #dc2626; }
+.product-cat:nth-child(2)::after { background: #a16207; }
+.product-cat:nth-child(3)::after { background: #db2777; }
+.product-cat:nth-child(4)::after { background: #64748b; }
+.product-cat:hover::after { opacity: 1; left: 0; right: 0; }
+
+/* Hover: levanta y brilla */
+.product-cat:hover {
+transform: translateY(-12px) scale(1.06);
+box-shadow: 0 22px 45px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.95);
+border-color: rgba(255,255,255,.9);
+}
+.product-cat:nth-child(1):hover { border-color: rgba(220,38,38,.4); box-shadow: 0 22px 45px rgba(220,38,38,.2); }
+.product-cat:nth-child(2):hover { border-color: rgba(161,98,7,.4);  box-shadow: 0 22px 45px rgba(161,98,7,.2); }
+.product-cat:nth-child(3):hover { border-color: rgba(219,39,119,.4); box-shadow: 0 22px 45px rgba(219,39,119,.2); }
+.product-cat:nth-child(4):hover { border-color: rgba(100,116,139,.4); box-shadow: 0 22px 45px rgba(100,116,139,.2); }
+
+/* =============================================
+   ICONOS — TODOS exactamente igual en tamaño y altura
+   justify-content: space-between en .product-cat
+   + flex-grow en el icono asegura alineación perfecta
+   ============================================= */
 .product-cat__icon {
-width: 110px; height: 110px;
+width: 120px; height: 120px;
+flex-shrink: 0;
 display: flex; align-items: center; justify-content: center;
-overflow: hidden;
+overflow: visible;
+position: relative;
+z-index: 1;
 }
+/* Cerdo y oveja: mismo contenedor pero imagen escalada para compensar
+   el exceso de espacio transparente en sus PNGs */
+.product-cat:nth-child(3) .product-cat__icon img,
+.product-cat:nth-child(4) .product-cat__icon img {
+transform: scale(1.7);
+}
+
 .product-cat__icon img {
 width: 100%; height: 100%;
 object-fit: contain;
-filter: drop-shadow(0 6px 16px rgba(47,95,134,.3));
-transition: all .35s ease;
+filter: drop-shadow(0 5px 12px rgba(0,0,0,.18));
+transition: transform .35s cubic-bezier(0.34,1.56,0.64,1),
+            filter .35s ease;
+display: block;
 }
-.product-cat:nth-child(1):hover .product-cat__icon img { filter: drop-shadow(0 10px 28px rgba(220,38,38,.55)); transform: scale(1.18) rotate(-6deg); }
-.product-cat:nth-child(1):hover .product-cat__label { color: #dc2626; }
-.product-cat:nth-child(2):hover .product-cat__icon img { filter: drop-shadow(0 10px 28px rgba(139,69,19,.55)); transform: scale(1.18) rotate(-6deg); }
-.product-cat:nth-child(2):hover .product-cat__label { color: #8B4513; }
-.product-cat:nth-child(3):hover .product-cat__icon img { filter: drop-shadow(0 10px 28px rgba(236,72,153,.55)); transform: scale(1.18) rotate(-6deg); }
-.product-cat:nth-child(3):hover .product-cat__label { color: #ec4899; }
-.product-cat:nth-child(4):hover .product-cat__icon img { filter: drop-shadow(0 10px 28px rgba(100,116,139,.55)); transform: scale(1.18) rotate(-6deg); }
-.product-cat:nth-child(4):hover .product-cat__label { color: #64748b; }
+
+/* Bounce escalonado — misma amplitud para todos */
+@keyframes soft-bounce {
+0%, 100% { transform: translateY(0) scale(1); }
+50%       { transform: translateY(-7px) scale(1.04); }
+}
+@keyframes soft-bounce-big {
+0%, 100% { transform: translateY(0) scale(1.7); }
+50%       { transform: translateY(-7px) scale(1.76); }
+}
+.product-cat:nth-child(1) .product-cat__icon img { animation: soft-bounce 3s ease-in-out 0.0s infinite; }
+.product-cat:nth-child(2) .product-cat__icon img { animation: soft-bounce 3s ease-in-out 0.5s infinite; }
+.product-cat:nth-child(3) .product-cat__icon img { animation: soft-bounce-big 3s ease-in-out 1.0s infinite; }
+.product-cat:nth-child(4) .product-cat__icon img { animation: soft-bounce-big 3s ease-in-out 1.5s infinite; }
+
+.product-cat:hover .product-cat__icon img {
+animation: none;
+transform: scale(1.25) translateY(-8px) rotate(-5deg);
+}
+/* Cerdo y oveja: hover compensado por el scale base 1.7 */
+.product-cat:nth-child(3):hover .product-cat__icon img,
+.product-cat:nth-child(4):hover .product-cat__icon img {
+transform: scale(2.1) translateY(-5px) rotate(-5deg);
+}
+.product-cat:nth-child(1):hover .product-cat__icon img { filter: drop-shadow(0 14px 28px rgba(220,38,38,.6)); }
+.product-cat:nth-child(2):hover .product-cat__icon img { filter: drop-shadow(0 14px 28px rgba(161,98,7,.6)); }
+.product-cat:nth-child(3):hover .product-cat__icon img { filter: drop-shadow(0 14px 28px rgba(219,39,119,.6)); }
+.product-cat:nth-child(4):hover .product-cat__icon img { filter: drop-shadow(0 14px 28px rgba(100,116,139,.6)); }
+
+/* Label — solo Aves, al fondo de la card */
 .product-cat__label {
-font-size: 1rem; font-weight: 800;
-color: var(--text); text-align: center;
-letter-spacing: 0.3px;
-transition: all .3s ease;
-text-shadow: 0 2px 6px rgba(255,255,255,0.8);
+font-size: .92rem; font-weight: 800;
+color: var(--blue-2); text-align: center;
+letter-spacing: 0.4px;
+padding: 4px 14px 2px;
+position: relative; z-index: 1;
+transition: color .3s ease;
 }
-html.dark .product-cat__label { text-shadow: 0 2px 6px rgba(0,0,0,0.6); }
+.product-cat:hover .product-cat__label { color: var(--blue); }
 
 /* Main */
 .main { background: var(--surface); padding: 50px 0 40px; transition: background .3s ease; }
 
 /* =============================================
-   FEATURES — cards sin espacios innecesarios
+   FEATURES — MONOCROMÁTICO MINIMALISTA
    ============================================= */
 .features {
 display: grid;
 grid-template-columns: repeat(3, minmax(0, 1fr));
-gap: 24px;
+gap: 20px;
 padding: 8px 0 20px;
 }
 .feature {
-border: 2px solid transparent;
-border-radius: 20px;
-padding: 28px 22px;
+border: 1.5px solid var(--feature-1-border);
+border-radius: 18px;
+padding: 26px 20px;
 display: grid;
 grid-template-columns: auto 1fr;
-gap: 20px;
+gap: 18px;
 align-items: center;
 text-align: left;
-transition: all .3s ease;
+transition: all .35s cubic-bezier(0.4,0,0.2,1);
 overflow: hidden;
+position: relative;
+background: var(--surface);
 }
-.feature:nth-child(1) { background: linear-gradient(135deg, var(--feature-blue) 0%, #BAE6FD 100%); border-color: #7DD3FC; }
-.feature:nth-child(2) { background: linear-gradient(135deg, var(--feature-green) 0%, #A7F3D0 100%); border-color: #6EE7B7; }
-.feature:nth-child(3) { background: linear-gradient(135deg, var(--feature-amber) 0%, #FDE68A 100%); border-color: #FCD34D; }
-.feature:hover { box-shadow: 0 12px 30px rgba(0,0,0,.14); transform: translateY(-6px); }
+
+/* Línea decorativa superior */
+.feature::before {
+content: '';
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 3px;
+border-radius: 18px 18px 0 0;
+background: linear-gradient(90deg, var(--blue) 0%, var(--blue-2) 100%);
+transform: scaleX(0);
+transform-origin: left;
+transition: transform .4s cubic-bezier(0.4,0,0.2,1);
+}
+.feature:hover::before { transform: scaleX(1); }
+
+.feature:nth-child(1) { background: var(--feature-1-bg); border-color: var(--feature-1-border); }
+.feature:nth-child(2) { background: var(--feature-2-bg); border-color: var(--feature-2-border); }
+.feature:nth-child(3) { background: var(--feature-3-bg); border-color: var(--feature-3-border); }
+
+.feature:hover {
+box-shadow: 0 10px 28px rgba(47,95,134,.14);
+transform: translateY(-5px);
+border-color: var(--blue);
+}
+
 .feature img {
-width: 80px; height: 80px;
-object-fit: cover; border-radius: 14px;
-filter: drop-shadow(0 4px 8px rgba(0,0,0,.2));
-border: 3px solid rgba(255,255,255,.8);
+width: 72px; height: 72px;
+object-fit: cover; border-radius: 12px;
+filter: grayscale(30%) drop-shadow(0 3px 6px rgba(0,0,0,.12));
+border: 2px solid rgba(47,95,134,.15);
 flex-shrink: 0;
+transition: filter .3s ease, transform .3s ease;
 }
-.feature div { display: flex; flex-direction: column; gap: 6px; }
-.feature h3 { margin: 0; font-size: 1.1rem; font-weight: 800; color: var(--blue-2); line-height: 1.2; }
-.feature p { margin: 0; color: var(--text); line-height: 1.55; font-size: .9rem; font-weight: 500; }
+.feature:hover img {
+filter: grayscale(0%) drop-shadow(0 6px 14px rgba(47,95,134,.25));
+transform: scale(1.05);
+}
+
+.feature div { display: flex; flex-direction: column; gap: 5px; }
+.feature h3 { margin: 0; font-size: 1.05rem; font-weight: 800; color: var(--blue-2); line-height: 1.2; }
+.feature p { margin: 0; color: var(--muted); line-height: 1.55; font-size: .88rem; font-weight: 500; }
 
 /* Section base */
 .section { padding: 0; border-top: 1px solid var(--border); }
 
 /* =============================================
-   PRODUCT DETAIL (aves.html) — mejorado
+   PRODUCT DETAIL (aves.html)
    ============================================= */
 .product-detail {
 padding: 60px 0;
@@ -509,14 +705,14 @@ font-size: .9rem; line-height: 1.75; color: var(--muted);
 }
 
 /* =============================================
-   PHASES — texto con padding correcto
+   PHASES
    ============================================= */
 .phases-grid {
 display: grid; grid-template-columns: repeat(2, 1fr);
 gap: 12px; margin-top: 8px;
 }
 .phase-card {
-background: linear-gradient(135deg, var(--feature-blue) 0%, rgba(186,230,253,.4) 100%);
+background: linear-gradient(135deg, var(--feature-1-bg) 0%, rgba(186,230,253,.4) 100%);
 border: 1px solid rgba(47,95,134,.2);
 border-radius: 14px; padding: 18px 22px;
 transition: transform .18s ease, box-shadow .18s ease;
@@ -550,7 +746,7 @@ font-weight: 700; font-size: .9rem; color: var(--text);
 .genetics-badge i { color: var(--green); flex-shrink: 0; }
 
 /* =============================================
-   BENEFITS — texto bien alineado
+   BENEFITS
    ============================================= */
 .benefits-grid {
 display: grid; grid-template-columns: repeat(2, 1fr);
@@ -558,7 +754,7 @@ gap: 10px; margin-top: 8px;
 }
 .benefit-item {
 display: flex; align-items: flex-start; gap: 12px;
-background: linear-gradient(135deg, var(--feature-green) 0%, rgba(167,243,208,.3) 100%);
+background: linear-gradient(135deg, var(--feature-1-bg) 0%, rgba(167,243,208,.3) 100%);
 border: 1px solid rgba(47,122,75,.2);
 border-radius: 10px; padding: 14px 20px;
 font-size: .88rem; color: var(--text); font-weight: 500; line-height: 1.5;
@@ -632,7 +828,7 @@ color: var(--text); margin: 0 0 16px; text-align: center;
 }
 .about-description p:last-child { margin-bottom: 0; }
 .value-card {
-position: relative; width: 100%; min-height: 300px;
+position: relative; width: 100%; min-height: 340px;
 border-radius: 16px 16px 0 0;
 transition: transform .15s ease, box-shadow .15s ease;
 will-change: transform;
@@ -763,19 +959,17 @@ transition: all .3s ease; font-size: 1.1rem;
    ============================================= */
 @media (max-width: 1024px) {
 .hero__products { max-width: 100%; }
-.product-cat__icon { width: 90px; height: 90px; }
 .about-values { grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .value-card { min-height: 280px; }
 }
 
 @media (max-width: 920px) {
 .hero { padding: 50px 0 40px; min-height: auto; }
-.hero__content { grid-template-columns: 1fr; gap: 36px; }
+.hero__content { grid-template-columns: 1fr; gap: 32px; }
 .hero__products { justify-self: center; max-width: 100%; }
-.products__grid { grid-template-columns: repeat(4, 1fr); gap: 10px; max-width: 100%; }
-.product-cat__icon { width: 80px; height: 80px; }
-.product-cat { padding: 10px 6px; }
-.product-cat__label { font-size: .9rem; }
+.products__grid { grid-template-columns: repeat(2, 1fr); gap: 14px; max-width: 380px; }
+.product-cat { padding: 20px 12px 16px; }
+.product-cat__icon { width: 120px; height: 120px; }
 .features { grid-template-columns: 1fr; gap: 16px; }
 .feature { padding: 20px 18px; gap: 16px; }
 .feature img { width: 68px; height: 68px; }
@@ -805,11 +999,11 @@ flex-direction: column; gap: 10px; z-index: 300;
 .nav__cta { display: none; }
 .hero { padding: 30px 0 28px; }
 .hero__title { font-size: clamp(1.7rem, 6vw, 2.2rem); }
-.products__title { font-size: 1.4rem; }
-.products__grid { grid-template-columns: repeat(4, 1fr); gap: 6px; }
-.product-cat__icon { width: 64px; height: 64px; }
-.product-cat { padding: 8px 4px; }
-.product-cat__label { font-size: .78rem; }
+.products__title-main { font-size: .72rem; padding: 4px 14px; }
+.products__title-accent { font-size: 1.65rem; padding: 6px 18px 10px; }
+.products__grid { grid-template-columns: repeat(2, 1fr); gap: 12px; max-width: 340px; }
+.product-cat { padding: 18px 10px 14px; }
+.product-cat__icon { width: 100px; height: 100px; }
 .contact-title { font-size: 2rem; }
 .contact-subtitle { font-size: 1rem; margin-bottom: 28px; }
 .clients-title { font-size: 1.8rem; }
@@ -822,9 +1016,9 @@ flex-direction: column; gap: 10px; z-index: 300;
 }
 
 @media (max-width: 480px) {
-.products__grid { grid-template-columns: repeat(4, 1fr); gap: 4px; }
-.product-cat__icon { width: 54px; height: 54px; }
-.product-cat__label { font-size: .7rem; }
+.products__grid { grid-template-columns: repeat(2, 1fr); gap: 10px; max-width: 300px; }
+.product-cat { padding: 14px 8px 12px; }
+.product-cat__icon { width: 86px; height: 86px; }
 .hero__lead { font-size: .95rem; }
 .phases-grid { grid-template-columns: 1fr; }
 .benefits-grid { grid-template-columns: 1fr; }
